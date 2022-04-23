@@ -15,7 +15,12 @@ function App() {
       
       console.log('todaysWeather obj', todaysWeather);
 
+      const parsedForecastData = [];
       
+      for (let i = 2; i < 35; i += 8) {
+        parsedForecastData.push(forecastData.list[i].main)
+      }
+      console.log('parsed', parsedForecastData)
     }
 
     fetchWeather();
