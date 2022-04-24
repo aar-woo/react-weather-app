@@ -15,6 +15,7 @@ function App() {
       todaysWeather.date = forecastData.list[0].dt_txt;
       todaysWeather.maxTemp = forecastData.list[0].main.temp_max;
       todaysWeather.minTemp = forecastData.list[0].main.temp_min;
+      todaysWeather.weatherIcon = forecastData.list[0].weather[0].description;
       
       console.log('todaysWeather obj', todaysWeather);
 
@@ -26,6 +27,7 @@ function App() {
         day.date = currDayForecast.dt_txt;
         day.maxTemp = currDayForecast.main.temp_max;
         day.minTemp = currDayForecast.main.temp_min;
+        day.weatherIcon = currDayForecast.weather[0].description;
         parsedForecastData.push(day);
       }
 
