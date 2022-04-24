@@ -8,16 +8,12 @@ function App() {
     async function fetchWeather() {
       let forecastResponse = await fetch('https://api.openweathermap.org/data/2.5/forecast?q=Orange&appid=7f4ddd7fea09e7bc32942448d698c69e&units=imperial');
       let forecastData = await forecastResponse.json();
-      console.log('forecast data:', forecastData)
-
       let todaysWeather = {};
 
       todaysWeather.date = forecastData.list[0].dt_txt;
       todaysWeather.maxTemp = forecastData.list[0].main.temp_max;
       todaysWeather.minTemp = forecastData.list[0].main.temp_min;
       todaysWeather.weatherIcon = forecastData.list[0].weather[0].description;
-      
-      console.log('todaysWeather obj', todaysWeather);
 
       const parsedForecastData = [];
       parsedForecastData.push(todaysWeather);
@@ -31,6 +27,7 @@ function App() {
         parsedForecastData.push(day);
       }
 
+      setForecastData(parsedForecastData);
       
       console.log('parsed', parsedForecastData)
     }
@@ -42,10 +39,18 @@ function App() {
 
   return (
     <div>
-      <p>
-        Weather data: ?
-      </p>
+
+      <div className="flex-column justify-center day-width">
+        <h4 className='text-center mb-0 grey'>Tue</h4>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png"></img>
+        <div className='min-max-div justify-evenly flex'>
+          <span>27°</span>
+          <span className='grey'>29°</span>
+        </div>
+      </div>
+
     </div>
+    
   )
 
 }
