@@ -44,8 +44,8 @@ function App() {
         <h4 className='text-center mb-0 grey'>Tue</h4>
         <img src="http://openweathermap.org/img/wn/10d@2x.png"></img>
         <div className='min-max-div justify-evenly flex'>
-          <span>27°</span>
-          <span className='grey'>29°</span>
+          <span>{Math.round(forecastData[0].minTemp)}°</span>
+          <span className='grey'>{Math.round(forecastData[0].maxTemp)}</span>
         </div>
       </div>
 
