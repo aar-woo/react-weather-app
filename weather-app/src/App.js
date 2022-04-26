@@ -38,7 +38,6 @@ function App() {
 
   useEffect(() => {
     fetchWeather();
-
   }, []);
 
 
@@ -47,7 +46,7 @@ function App() {
 
       <div className="flex-column justify-center day-width">
         <h4 className='text-center mb-0 grey'>Tue</h4>
-        <img src="http://openweathermap.org/img/wn/10d@2x.png"></img>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt='partially cloudy and rainy icon'></img>
         <div className='min-max-div justify-evenly flex'>
           <span>{Math.round(forecastData[0].minTemp)}°</span>
           <span className='grey'>{Math.round(forecastData[0].maxTemp)}</span>
