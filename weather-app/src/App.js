@@ -1,5 +1,6 @@
 import './App.css';
 import {useState, useEffect} from 'react';
+const timestamp = require('unix-timestamp');
 
 function App() {
   const [forecastData, setForecastData] = useState([{}]);
@@ -8,9 +9,15 @@ function App() {
     let forecastResponse = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,minutely,alerts&appid=7f4ddd7fea09e7bc32942448d698c69e&units=imperial')
     let forecastData = await forecastResponse.json();
     const parsedForecastData = [];
-    // const options = {weekday: 'long'}
-
-    console.log('forecast', forecastData);
+    const numToDayOfWeek = {
+      0: 'Sun',
+      1: 'Mon', 
+      2: 'Tues',
+      3: 'Wed',
+      4: 'Thurs',
+      5: 'Fri',
+      6: 'Sat'
+    }
 
     for (let i = 0; i < 5; i++) {
       const day = {};
@@ -21,12 +28,12 @@ function App() {
       day.minTemp = currDayForecast.temp.min;
       day.weatherIcon = currDayForecast.weather[0].description;
 
-      const daysDate = new Date(day.unixDate);
-      day.weekday = daysDate.getDay();
+      const convertedDate = new Date(timestamp.toDate(day.unixDate));
+      day.weekday = numToDayOfWeek[convertedDate.getDay()];
       parsedForecastData.push(day);
     }
 
-    console.log("parsed", parsedForecastData)
+    setForecastData(parsedForecastData);
   }
 
   useEffect(() => {
